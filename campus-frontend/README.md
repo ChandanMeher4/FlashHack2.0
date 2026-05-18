@@ -1,16 +1,52 @@
-# React + Vite
+# CampusFlow System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CampusFlow is an interactive administrative dashboard and curriculum mapping tool built with React and Vite. It features a spectacular full-screen curriculum dependency graph and a high-fidelity, skeuomorphic hardware terminal that simulates concurrent course registration scenarios.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 🗺️ Curriculum Mapper
+- **Interactive Dependency Graph**: Visualizes the entire computer science curriculum using a directed graph.
+- **Auto-Layout**: Automatically groups courses by semester and draws animated prerequisite dependencies.
+- **Modern UI**: Custom-styled node components featuring semantic semester-based color coding and glassmorphism hover effects.
 
-## React Compiler
+### 🎛️ Hardware Server Console (Live Registration)
+A spectacular skeuomorphic overlay mimicking a physical hardware console that simulates concurrent course registration. It demonstrates the critical importance of concurrency locks in backend systems.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Unsafe Registration (Race Condition)**: Simulates 50 concurrent students trying to register for 30 seats without a mutex lock. Demonstrates classic TOCTOU (Time-of-Check to Time-of-Use) race conditions, resulting in oversold seats.
+- **Safe Registration (Mutex Lock)**: Simulates the same scenario using a sequential mutex lock, correctly enforcing the 30-seat capacity constraint and safely rejecting the excess students.
+- **Skeuomorphic Aesthetics**: Features deep metallic bevels, tactile physical buttons with depression animations, hardware LEDs, and a realistic glass CRT terminal output with scanlines and glare effects.
+- **Auto-scrolling CRT Log**: Real-time color-coded process output logging each thread's actions, with custom retro scrollbar and smart auto-scroll pausing.
 
-## Expanding the ESLint configuration
+## Technology Stack
+- **Frontend Framework**: React 18, Vite
+- **Styling**: Tailwind CSS v4 (with custom CSS variable theming and animations)
+- **Data Visualization**: React Flow (`@xyflow/react`)
+- **HTTP Client**: Axios
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository and navigate into the frontend directory:
+   ```bash
+   cd campus-frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the Vite development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173/`.
+
+### API Integration
+By default, the Curriculum Mapper expects a JSON array of course data at `http://localhost:8080/api/curriculum/sorted`. If the backend is unreachable, it will gracefully degrade and render an extensive fallback dataset of computer science courses.
