@@ -3,72 +3,93 @@ import CurriculumGraph from './components/CurriculumGraph';
 import LiveRegistration from './components/LiveRegistration';
 
 export default function App() {
-  const [showConsole, setShowConsole] = useState(false);
+  const [activeFeature, setActiveFeature] = useState('mapper'); // 'mapper' or 'console'
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-surface-900 text-text-primary relative">
-      {/* Top Navbar */}
-      <header className="flex-none h-16 border-b border-border bg-surface-800/80 backdrop-blur-md px-6 flex items-center justify-between z-10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] relative">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.3)] border border-white/10">
+    <div className="flex h-screen overflow-hidden bg-surface-900 text-text-primary">
+      {/* Sidebar */}
+      <aside className="w-72 flex-none border-r border-border bg-surface-800/90 backdrop-blur-md flex flex-col z-20 shadow-[4px_0_24px_rgba(0,0,0,0.4)] relative">
+        {/* Header / Logo */}
+        <div className="h-20 border-b border-border flex items-center px-6 gap-4 bg-surface-800">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.3)] border border-white/10 shrink-0">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
           </div>
-          <div>
-            <h1 className="text-lg font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-text-secondary tracking-tight">
-              CampusFlow System
+          <div className="overflow-hidden">
+            <h1 className="text-base font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-text-secondary tracking-tight truncate">
+              CampusFlow
             </h1>
-            <p className="text-[11px] text-accent-cyan/90 font-mono tracking-widest uppercase mt-0.5">
-              Admin Control Center
+            <p className="text-[10px] text-accent-cyan/90 font-mono tracking-widest uppercase mt-0.5 truncate">
+              System Admin
             </p>
           </div>
         </div>
-        
-        <div className="flex items-center gap-6">
+
+        {/* Navigation */}
+        <nav className="flex-1 px-4 py-6 space-y-3 overflow-y-auto">
+          <div className="text-[10px] font-mono text-text-muted uppercase tracking-widest px-2 mb-2">Features</div>
+          
           <button 
-            onClick={() => setShowConsole(true)}
-            className="group relative flex items-center gap-3 px-5 py-2.5 rounded-lg bg-gradient-to-b from-[#2a2a35] to-[#1a1a24] border border-[#3f3f4e] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_6px_rgba(0,0,0,0.5)] hover:from-[#353542] hover:to-[#22222e] active:shadow-[inset_0_3px_5px_rgba(0,0,0,0.5)] active:translate-y-[1px] transition-all"
+            onClick={() => setActiveFeature('mapper')}
+            className={`w-full group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeFeature === 'mapper' ? 'bg-surface-700/80 border border-border shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.2)] text-white' : 'text-text-secondary hover:bg-surface-700/40 hover:text-text-primary border border-transparent'}`}
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-accent-red animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>
-            <span className="text-sm font-bold text-white tracking-wide shadow-black drop-shadow-md">Access Server Console</span>
+            <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${activeFeature === 'mapper' ? 'bg-accent-blue/20 text-accent-blue' : 'bg-surface-600/50 group-hover:bg-surface-600 group-hover:text-white'}`}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+            <div className="flex flex-col items-start">
+              <span className="text-sm font-bold tracking-wide">Curriculum Mapper</span>
+              {activeFeature === 'mapper' && <span className="text-[10px] text-accent-blue/80 font-mono tracking-wider mt-0.5">Active</span>}
+            </div>
           </button>
           
-          <div className="w-px h-8 bg-border"></div>
+          <button 
+            onClick={() => setActiveFeature('console')}
+            className={`w-full group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeFeature === 'console' ? 'bg-surface-700/80 border border-border shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.2)] text-white' : 'text-text-secondary hover:bg-surface-700/40 hover:text-text-primary border border-transparent'}`}
+          >
+            <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${activeFeature === 'console' ? 'bg-accent-red/20 text-accent-red' : 'bg-surface-600/50 group-hover:bg-surface-600 group-hover:text-white'}`}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            </div>
+            <div className="flex flex-col items-start">
+              <span className="text-sm font-bold tracking-wide">Server Control</span>
+              {activeFeature === 'console' && <span className="text-[10px] text-accent-red/80 font-mono tracking-wider mt-0.5">Active</span>}
+            </div>
+            {activeFeature !== 'console' && (
+              <span className="ml-auto flex h-3 w-3 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-accent-red shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+              </span>
+            )}
+          </button>
+        </nav>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-700/50 border border-border shadow-[inset_0_1px_4px_rgba(0,0,0,0.5)]">
+        {/* System Status Footer */}
+        <div className="p-4 border-t border-border bg-surface-900/80">
+          <div className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-surface-800 border border-border shadow-[inset_0_1px_4px_rgba(0,0,0,0.5)]">
             <span className="w-2 h-2 rounded-full bg-accent-green shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
-            <span className="text-[11px] font-mono text-text-secondary">System Online</span>
+            <span className="text-xs font-mono font-semibold text-text-secondary tracking-wide">System Online</span>
           </div>
         </div>
-      </header>
+      </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex overflow-hidden relative">
-        <section className="w-full h-full flex flex-col relative bg-[#0a0a0f]">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent-blue/5 via-surface-900 to-surface-900 pointer-events-none" />
-          <CurriculumGraph />
-        </section>
-      </main>
-
-      {/* Skeuomorphic Modal Overlay */}
-      {showConsole && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-8 animate-fade-in-up">
-          <div className="absolute inset-0" onClick={() => setShowConsole(false)}></div>
-          
-          <div className="relative w-full max-w-5xl h-[85vh] flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] rounded-2xl animate-counter-pop">
-            {/* Close Button */}
-            <button 
-              onClick={() => setShowConsole(false)}
-              className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-gradient-to-b from-[#3a3a45] to-[#1f1f2a] border border-[#4f4f5e] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_10px_rgba(0,0,0,0.5)] flex items-center justify-center text-white hover:text-accent-red hover:brightness-110 active:shadow-[inset_0_3px_5px_rgba(0,0,0,0.5)] active:translate-y-[1px] transition-all z-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-            
-            <LiveRegistration />
-          </div>
+      <main className="flex-1 flex overflow-hidden relative bg-[#0a0a0f]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent-blue/5 via-surface-900 to-surface-900 pointer-events-none z-0" />
+        
+        <div className="w-full h-full relative z-10">
+          {activeFeature === 'mapper' ? (
+            <div key="mapper" className="w-full h-full animate-fade-in-up">
+              <CurriculumGraph />
+            </div>
+          ) : (
+            <div key="console" className="w-full h-full p-8 animate-fade-in-up flex items-center justify-center">
+              <div className="w-full max-w-7xl h-[90%] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] overflow-hidden">
+                <LiveRegistration />
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </main>
     </div>
   );
 }
