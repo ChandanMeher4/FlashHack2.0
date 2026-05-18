@@ -1,0 +1,122 @@
+[
+  {
+    "courseId": "CS101",
+    "courseName": "Introduction to Programming",
+    "availableSeats": 10,
+    "prerequisites": []
+  },
+  {
+    "courseId": "CS105",
+    "courseName": "Discrete Mathematics",
+    "availableSeats": 10,
+    "prerequisites": []
+  },
+  {
+    "courseId": "CS102",
+    "courseName": "Data Structures",
+    "availableSeats": 10,
+    "prerequisites": ["CS101"]
+  },
+  {
+    "courseId": "CS201",
+    "courseName": "Computer Organization",
+    "availableSeats": 10,
+    "prerequisites": ["CS102"]
+  },
+  {
+    "courseId": "CS202",
+    "courseName": "Algorithm Design and Analysis",
+    "availableSeats": 10,
+    "prerequisites": ["CS102", "CS105"]
+  },
+  {
+    "courseId": "CS210",
+    "courseName": "Object-Oriented Software Design",
+    "availableSeats": 10,
+    "prerequisites": ["CS102"]
+  },
+  {
+    "courseId": "CS220",
+    "courseName": "Database Systems",
+    "availableSeats": 10,
+    "prerequisites": ["CS102"]
+  },
+  {
+    "courseId": "CS230",
+    "courseName": "Web Development",
+    "availableSeats": 10,
+    "prerequisites": ["CS102"]
+  },
+  {
+    "courseId": "CS301",
+    "courseName": "Operating Systems",
+    "availableSeats": 10,
+    "prerequisites": ["CS201"]
+  },
+  {
+    "courseId": "CS302",
+    "courseName": "Computer Networks",
+    "availableSeats": 10,
+    "prerequisites": ["CS201"]
+  },
+  {
+    "courseId": "CS310",
+    "courseName": "Machine Learning",
+    "availableSeats": 10,
+    "prerequisites": ["CS202"]
+  },
+  {
+    "courseId": "CS311",
+    "courseName": "Compiler Construction",
+    "availableSeats": 10,
+    "prerequisites": ["CS201", "CS202"]
+  },
+  {
+    "courseId": "CS320",
+    "courseName": "Distributed Systems",
+    "availableSeats": 10,
+    "prerequisites": ["CS301", "CS302"]
+  },
+  {
+    "courseId": "CS330",
+    "courseName": "Software Engineering",
+    "availableSeats": 10,
+    "prerequisites": ["CS210", "CS220"]
+  },
+  {
+    "courseId": "CS340",
+    "courseName": "Computer Graphics",
+    "availableSeats": 10,
+    "prerequisites": ["CS202", "CS201"]
+  },
+  {
+    "courseId": "CS350",
+    "courseName": "Information Security",
+    "availableSeats": 10,
+    "prerequisites": ["CS302", "CS220"]
+  },
+  {
+    "courseId": "CS360",
+    "courseName": "Cloud Computing",
+    "availableSeats": 10,
+    "prerequisites": ["CS320", "CS302"]
+  },
+  {
+    "courseId": "CS370",
+    "courseName": "Natural Language Processing",
+    "availableSeats": 10,
+    "prerequisites": ["CS310"]
+  },
+  {
+    "courseId": "CS380",
+    "courseName": "Parallel and Concurrent Programming",
+    "availableSeats": 10,
+    "prerequisites": ["CS301", "CS202"]
+  },
+  {
+    "courseId": "CS390",
+    "courseName": "Senior Capstone Project",
+    "availableSeats": 10,
+    "prerequisites": ["CS330", "CS310"]
+  }
+]
